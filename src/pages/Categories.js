@@ -13,7 +13,7 @@ const Categories = ()=>{
         return new Promise( (resolve)=>{
             setTimeout(() => {
                 resolve(listados)
-            }, 1000);
+            }, 500);
             
         })
     }

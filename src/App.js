@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
 import Categories from './pages/Categories';
+import Cart from './pages/Cart';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/product/:id' element={<Detail />} />
               <Route path='/products/:category' element={<Categories />} />
+              <Route path='/cart' element={<Cart />} />
           </Routes>
 
           <footer  

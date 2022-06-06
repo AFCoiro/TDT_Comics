@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { Button } from '@mui/material';
 
-const ItemCount = ({stock})=>{
+const ItemCount = ({stock,showBtn,setShowBtn})=>{
     const [count, setCount] =useState(1);
+    
     const onAdd = ()=>{
-        console.log(count)
-}
+        setShowBtn(count);
+        showBtn(true);
+    }
+
     return(
         <>
             <div className='Contador'>
@@ -16,7 +19,7 @@ const ItemCount = ({stock})=>{
                 <p>{count}</p>
 
                 <Button onClick={()=> 
-                    setCount(count + 1)} 
+                    setCount(count + 1)}   
                     disabled={count === (stock)}>+</Button>
             </div>
                  <Button onClick={onAdd} 
@@ -29,3 +32,4 @@ const ItemCount = ({stock})=>{
 
 }
 export default ItemCount;
+

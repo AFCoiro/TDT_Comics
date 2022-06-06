@@ -11,7 +11,7 @@ const ItemListContainer = ({titleCont})=>{
         return new Promise( (resolve)=>{
             setTimeout(() => {
                 resolve(listados)
-            }, 2000);
+            }, 1000);
             
         })
     }

@@ -1,12 +1,14 @@
 import './ItemDetail.css'
 import ItemCount from './ItemCount/ItemCount';
-import { Grid } from '@mui/material';
-import ItemListContainer from './../../ItemListContainer/ItemListContainer'
-
+import { Button, Grid } from '@mui/material';
+import ItemListContainer from './../../ItemListContainer/ItemListContainer';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ItemDetail= ({data})=>{
     const {id,nombre,titulo,precio,imagen,stock,detalle} = data;
-
+    const [showBtn, setShowBtn] = useState(false);
+    console.log('cantidad de productos comprados:',showBtn);
     return(
         <>
         <Grid container className='detalle'> 
@@ -22,7 +24,24 @@ const ItemDetail= ({data})=>{
                 <p> 12 cuotas sin interés - 
                     20% de descuento pagando con Efectivo Contraentrega para Envíos en moto- 
                     Transferencia o Deposito bancario - Efectivo o Débito en sucursal.</p>
-                <ItemCount stock={stock}/>
+                
+                {!showBtn ?
+                <ItemCount
+                 stock={stock} 
+                 showBtn={showBtn}
+                 setShowBtn={setShowBtn}
+                 />              
+                 : 
+                 <> <h4>SELECCIONASTE {showBtn} ITEM/S.</h4>
+                 <Button 
+                    
+                    variant="contained" 
+                    color="error"
+                    ><Link className='btnDetalle1' to={'/cart'} > TERMINAR COMPRA  </Link> 
+                    </Button>
+                </>
+                } 
+
             </Grid>
 
         </Grid>
