@@ -2,13 +2,15 @@ import './ItemDetail.css'
 import ItemCount from './ItemCount/ItemCount';
 import { Button, Grid } from '@mui/material';
 import ItemListContainer from './../../ItemListContainer/ItemListContainer';
-import { useState } from 'react';
+import { useState} from 'react';
 import { Link } from 'react-router-dom';
+
 
 const ItemDetail= ({data})=>{
     const {id,nombre,titulo,precio,imagen,stock,detalle} = data;
     const [showBtn, setShowBtn] = useState(false);
     console.log('cantidad de productos comprados:',showBtn);
+
     return(
         <>
         <Grid container className='detalle'> 
@@ -30,6 +32,9 @@ const ItemDetail= ({data})=>{
                  stock={stock} 
                  showBtn={showBtn}
                  setShowBtn={setShowBtn}
+                 titulo={titulo}
+                 precio={precio}
+                 imagen={imagen}
                  />              
                  : 
                  <> <h4>SELECCIONASTE {showBtn} ITEM/S.</h4>

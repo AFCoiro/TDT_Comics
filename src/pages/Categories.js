@@ -35,7 +35,7 @@ const Categories = ()=>{
     }, [category])
     return(
         <>
-        <div><img className='CarouselClass2' src="../ban/B2.jpg" /></div>
+        <div><img className='CarouselClass2' src="../ban/B2.jpg" alt='banner ofertas'/></div>
         <h2 className='h2Cat'>{category}</h2>
         <Grid   
             container

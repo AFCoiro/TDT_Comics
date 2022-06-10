@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState , useContext } from 'react';
 import { Button } from '@mui/material';
+import CartContext from '../../../../context/CartContext';
 
-const ItemCount = ({stock,showBtn,setShowBtn})=>{
+const ItemCount = ({titulo,precio,imagen,stock,showBtn,setShowBtn})=>{
     const [count, setCount] =useState(1);
-    
+    const {addCart, removeCart} = useContext(CartContext);
     const onAdd = ()=>{
         setShowBtn(count);
         showBtn(true);
@@ -22,7 +23,10 @@ const ItemCount = ({stock,showBtn,setShowBtn})=>{
                     setCount(count + 1)}   
                     disabled={count === (stock)}>+</Button>
             </div>
-                 <Button onClick={onAdd} 
+                 <Button onClick={() => {
+                 addCart({titulo,precio,imagen,count});
+                onAdd();
+                 }}
                     href='#' 
                     variant="contained"
                     color="error"> Agregar al Carrito</Button>

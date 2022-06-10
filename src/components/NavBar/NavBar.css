@@ -3,3 +3,22 @@
     color: white;
 
 }
+
+.MyCart{
+    color: white;
+    width: 30px;
+}
+.btnDetalle{
+    text-decoration: none;
+    color: white;
+    height: 50px;
+}
+.imgCart{
+    width: 80px;
+}
+.vacio{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+    
