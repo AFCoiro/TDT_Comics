@@ -13,7 +13,7 @@ return(
         <h2 className='titulo'>{nombre} - {titulo}</h2> 
         
         <img src={`/prod/${imagen}`}  alt={nombre} className='imgProd'/>
-        <h4>{precio}</h4> 
+        <h4>${precio}</h4> 
         <Grid container
                 direction="row"
                 sx={{ justifyContent: 'center' }}

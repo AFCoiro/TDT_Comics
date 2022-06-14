@@ -7,3 +7,34 @@
     margin-top: 0;
     font-size: 40px;
 }
+.cartCont{
+    margin-top: 10%;
+
+}
+.checkField{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    padding: 15px ;
+
+}
+.checkFieldSons{
+    margin: 30px;
+}
+.check{
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    color: black;
+    font-size: 28px;
+}
+.btnDe {
+    margin: 32px !important;
+    padding: 15px !important;
+}
+.imgCart{
+    height: 100%;
+}
+.carritoVacio{
+    padding-bottom: 43%;
+}

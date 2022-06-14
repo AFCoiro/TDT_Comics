@@ -4,11 +4,12 @@ const CartContext = createContext();
 
 const CartProvider = ({children})=>{
     const [cartListItem, setCartListItem] = useState([]);
-
+    const [ total, setTotal] = useState(0); 
+            
     const addCart = (prod)=>{
         let isInCart = cartListItem.find(cartItem => cartItem.id === prod.id)
         if(!isInCart){
-            console.log('se agego al carrito',prod)
+            setTotal(total + prod.precio * prod.count);
             return setCartListItem(cartListItem => [...cartListItem, prod])
             
         }
@@ -26,7 +27,7 @@ const CartProvider = ({children})=>{
     }
 
     const data = {
-        cartListItem,addCart,removeCart,clear
+        cartListItem,addCart,removeCart,clear,total
     }   
 
         return(

@@ -43,12 +43,13 @@ return(
              onClose={handleClose}
              MenuListProps={{'aria-labelledby': 'basic-button',}}
             >
-            {cartListItem.length === 0 && (
-                        <>
-                            <p className='vacio'>¡Ups!Tu carrito está vacío :( </p>
-                        </>
-                    )}
-                    {<>
+            {(cartListItem.length === 0) ? 
+                        <><div className='vacio'>
+                            <p>¡Ups!Tu carrito está vacío :( </p>
+                            <Button ><Link to={'/'} className='seguirCompra'>Seguir Comprando </Link></Button>
+                        </div></>
+                     :
+                    <>
                     <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 400 }} aria-label="simple table">
                         <TableHead>
@@ -73,14 +74,14 @@ return(
                                 </TableCell>
                                 <TableCell align="right">{item.titulo}</TableCell>
                                 <TableCell align="right">{item.count}</TableCell>
-                                <TableCell align="right">{item.precio}</TableCell>
+                                <TableCell align="right">${item.precio}</TableCell>
                                 <TableCell align="right"><Button onClick={() => removeCart(item.id)}><DeleteIcon/></Button></TableCell>
                             </TableRow>
                             ))}
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <div container> 
+                <div container className='cajaBtn'> 
                     <Button
                         align="center"
                         variant="contained" 
@@ -95,7 +96,7 @@ return(
                         align="center"
                         variant="contained" 
                         color="error"
-                        className='btnDetalle'
+                        className='btnDetalle '
                         onClick={clear}
                         >
                         borrar todo
