@@ -5,7 +5,7 @@ import CartContext from '../../../../context/CartContext';
 
 const ItemCount = ({titulo,precio,imagen,stock,showBtn,setShowBtn})=>{
     const [count, setCount] =useState(1);
-    const {addCart, removeCart} = useContext(CartContext);
+    const {addCart} = useContext(CartContext);
     const onAdd = ()=>{
         setShowBtn(count);
         showBtn(true);

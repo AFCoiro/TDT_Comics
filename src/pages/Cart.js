@@ -123,7 +123,7 @@ const Cart = ()=>{
             </Grid>
             :
             <>
-            <h2 className='carritoVacio'>¡Tu <ShoppingCartSharpIcon/> está vacío...Podés empezar a comprar en el siguiente <Link to='/'>acá!</Link></h2>
+            <h2 className='carritoVacio'>¡Tu <ShoppingCartSharpIcon/> está vacío...Podés empezar a comprar <Link to='/'>acá!</Link></h2>
             </>
             }
         </div>

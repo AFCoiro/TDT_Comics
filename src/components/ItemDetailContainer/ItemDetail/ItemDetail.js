@@ -21,7 +21,7 @@ const ItemDetail= ({data})=>{
             </Grid>
 
             <Grid item md={6}>
-            <h1>{nombre} {id}-{titulo}</h1>
+            <h1>{nombre}-{titulo}</h1>
                 <h2>{precio}</h2>
                 <p> 12 cuotas sin interés - 
                     20% de descuento pagando con Efectivo Contraentrega para Envíos en moto- 

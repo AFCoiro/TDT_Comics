@@ -6,7 +6,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import CartContext from '../../../../context/CartContext';
 
 const Item = ({datos})=>{
-    const {id,nombre,titulo,precio,imagen,stock} = datos;
+    const {id,nombre,titulo,precio,imagen} = datos;
     const {addCart} = useContext(CartContext)
 return( 
         <div className='ItemClass'>
