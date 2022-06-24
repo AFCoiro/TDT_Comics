@@ -16,9 +16,10 @@ const CartProvider = ({children})=>{
         
     }
 
-    const removeCart = (id)=>{
+    const removeCart = (id, precio, count)=>{
         const arrayRest = cartListItem.filter((prod) => prod.id !== id)
         setCartListItem(arrayRest);
+        setTotal(total - precio * count);
     };
 
     const clear = (id)=>{

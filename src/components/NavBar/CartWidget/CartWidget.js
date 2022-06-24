@@ -75,7 +75,13 @@ return(
                                 <TableCell align="right">{item.titulo}</TableCell>
                                 <TableCell align="right">{item.count}</TableCell>
                                 <TableCell align="right">${item.precio}</TableCell>
-                                <TableCell align="right"><Button onClick={() => removeCart(item.id)}><DeleteIcon/></Button></TableCell>
+                                <TableCell align="right">
+                                    <Button 
+                                        color="error"
+                                        onClick={() => removeCart(item.id)}>
+                                        <DeleteIcon/>
+                                    </Button>
+                                </TableCell>
                             </TableRow>
                             ))}
                         </TableBody>

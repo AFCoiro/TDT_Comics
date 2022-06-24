@@ -1,5 +1,6 @@
 import './pages.css';
 import db from './../utils/firebaseConfig';
+import ItemCount from '../components/ItemDetailContainer/ItemDetail/ItemCount/ItemCount';
 
 import * as React from 'react';
 import { useContext, useState } from 'react';
@@ -82,7 +83,7 @@ const Cart = ()=>{
                                 </TableRow> 
                             </TableHead>
                             {cartListItem.map((data) =>{ 
-                const {id,titulo,precio,imagen,count} = data;
+                const {id,titulo,precio,imagen,count,stock} = data;
                 return( 
                             <TableBody>
                                 <TableRow>
@@ -92,13 +93,27 @@ const Cart = ()=>{
                                         component="th" 
                                         scope="row">
                                         <p>{titulo}</p>
-                                        <img className='imgCart' src={`/prod/${imagen}`} alt={`${titulo}`} />
+                                        <img 
+                                         className='imgCart'
+                                         src={`/prod/${imagen}`} 
+                                         alt={`${titulo}`} />
                                     </TableCell>
-                                    <TableCell align="center">{count}</TableCell>
-                                    <TableCell align="center">${precio}</TableCell>
-                                    <TableCell align="center"><Button
-                                     onClick={() => removeCart(id)} 
-                                    ><DeleteIcon/></Button></TableCell>
+                                    <TableCell align="center"> 
+                                        <ItemCount 
+                                        precio={precio}
+                                        stock={stock}
+                                        tituloBtn='EDITAR'/>  
+                                    </TableCell>
+                                    <TableCell align="center">
+                                        ${precio*count}
+                                    </TableCell>
+                                    <TableCell align="center">
+                                        <Button
+                                        color="error"
+                                        onClick={() => removeCart(id, precio,count)}>
+                                            <DeleteIcon/>
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>
                             </TableBody>
                 )})}
@@ -138,9 +153,9 @@ const Cart = ()=>{
                                             <div item >
                                                 TOTAL  
                                             </div>
-                                                    <div item >
-                                                    :  ${total}
-                                                </div>
+                                                <div item>
+                                                :  ${total}
+                                            </div>
                                         </div>
                                     </div>
                                     <div >
@@ -179,6 +194,7 @@ const Cart = ()=>{
                               variant="outlined"
                               value={buyerV.name}
                               onChange={handleChange}
+                              required
                           />
                           <TextField 
                               className='FormItem'
@@ -188,6 +204,7 @@ const Cart = ()=>{
                               variant="outlined" 
                               value={buyerV.phone}
                               onChange={handleChange}
+                              required
                           />
                           <TextField 
                               className='FormItem'
@@ -197,6 +214,7 @@ const Cart = ()=>{
                               variant="outlined" 
                               value={buyerV.mail}
                               onChange={handleChange}
+                              required
                           />
                           <Button
                           className='btnDetalle FormItem'
