@@ -19,6 +19,7 @@ const ItemDetail= ({data})=>{
         setShowBtn(false);
         removeCart(id)
     }
+
     return(
         <>
         <Grid container  className='detalle'> 
@@ -74,7 +75,7 @@ const ItemDetail= ({data})=>{
                         TERMINAR COMPRA  
                     </Link> 
                 </Button>
-                <Button onClick={() => returnItem()} color="error">
+                <Button onClick={returnItem} color="error">
                     <EditIcon /> 
                 </Button>
                 </>
