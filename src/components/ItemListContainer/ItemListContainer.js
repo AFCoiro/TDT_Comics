@@ -1,15 +1,20 @@
-import { useState , useEffect } from 'react'
 import './ItemListContainer.css'
-
 import ItemList from './ItemList/ItemList'
+import db from "./../../utils/firebaseConfig";
+import Pagination from '../Pagination/Pagination';
+import CartContext from '../../context/CartContext';
+
+import { useState , useEffect,useContext } from 'react'
+import { collection, getDocs } from "firebase/firestore";
+import { Container, Skeleton } from '@mui/material';
+
 import Grid from '@mui/material/Grid';
 
-import { collection, getDocs } from "firebase/firestore";
-import db from "./../../utils/firebaseConfig";
-
 const ItemListContainer = ({titleCont})=>{   
-    const  [list, setList] = useState([])
-    
+    const  [list, setList] = useState([]);
+    const  [currentPage, setCurrentPage] = useState(1);
+    const  [listPerPage] = useState(8);
+    const {setLoading, loading,i } = useContext(CartContext);
 
     useEffect(()=>{
         setList([])
@@ -20,32 +25,57 @@ const ItemListContainer = ({titleCont})=>{
         .catch((err)=>{
             console.log('no anda', err)
         })
-    
+
     }, [])
 
     const getItems = async () =>{
+        
         const listadoSnapshot = await getDocs(collection(db, "listados"));
         const productList = listadoSnapshot.docs.map( (doc)=>{
-            let product = doc.data();
+        let product = doc.data();
             product.id = doc.id;
-            return product;
+            setLoading(false);
+        return (product);
         })
-        return (productList);
+        
+        return (productList)
     }
+
+    const indexOfLastList = currentPage * listPerPage;
+    const indexOfFirstList = indexOfLastList - listPerPage;
+    const currentList = list.slice(indexOfFirstList, indexOfLastList);
+
+    const paginate = (pageNumber)=> setCurrentPage(pageNumber);
 
     return(
         <>
-        <h2>{titleCont}</h2>
-        <Grid   
-            container
-            direction="row"
-            justifyContent="space-evenly"
-            alignItems="center" >   
-                 
-
-            <ItemList listaProd={list} />
-
-        </Grid>
+         <Container>
+            <h2>{titleCont}</h2>
+            <Grid   
+                container
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center" 
+                >  
+                {loading ?(
+                        i.map(()=>{
+                        return(
+                        <Skeleton
+                        key={i}
+                        variant="rectangular"
+                        animation="wave"
+                        width='23%'
+                        sx={{marginTop:'5%'}}
+                        height={350}/>)})
+                    ):(
+                    <ItemList listaProd={currentList} />
+                )} 
+                <Pagination 
+                listPerPage={listPerPage} 
+                totalList={list.length}
+                paginate={paginate} />
+            </Grid>
+        </Container>
         </>                 
         );
     }

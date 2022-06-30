@@ -1,13 +1,14 @@
 import './../NavBar.css';
+import CartContext from '../../../context/CartContext';
+
+import * as React from 'react';
+import { useState , useContext } from 'react';
+import {Link} from 'react-router-dom';
+
 import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
-import { useState , useContext } from 'react';
 import Menu from '@mui/material/Menu';
-import {Link} from 'react-router-dom';
-import CartContext from '../../../context/CartContext';
-import * as React from 'react';
-
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -17,8 +18,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 
-
 const CartWidgetNav = () => {
+    
 const [windowOpen, setwindowOpen] = useState(null);
 const open = Boolean(windowOpen);
 const {cartListItem,removeCart,clear} = useContext(CartContext);

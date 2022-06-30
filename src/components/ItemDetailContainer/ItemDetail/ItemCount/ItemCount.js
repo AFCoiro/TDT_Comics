@@ -1,14 +1,18 @@
-import * as React from 'react';
-import { useState , useContext } from 'react';
-import { Button } from '@mui/material';
+import Alert from './../../../Alert/Alert';
 import CartContext from '../../../../context/CartContext';
 
-const ItemCount = ({titulo,precio,imagen,stock,showBtn,setShowBtn, tituloBtn})=>{
+import * as React from 'react';
+import { useState , useContext } from 'react';
+
+import { Button } from '@mui/material';
+
+
+const ItemCount = ({id,titulo,precio,imagen,stock,showBtn,setShowBtn, tituloBtn})=>{
     const [count, setCount] =useState(1);
     const {addCart} = useContext(CartContext);
     const onAdd = ()=>{
         setShowBtn(count);
-        showBtn(true);
+        showBtn(true); 
     }
     
     return(
@@ -27,15 +31,22 @@ const ItemCount = ({titulo,precio,imagen,stock,showBtn,setShowBtn, tituloBtn})=>
                 +</Button>
             </div>
             <div>
-                 <Button onClick={() => {
-                    addCart({titulo,precio,imagen,count});
-                    onAdd();
-                    }}
-                    href='#' 
-                    variant="contained"
-                    color="error">
-                        {tituloBtn}
-                </Button>
+                <Alert id={id}
+                 titulo={titulo}
+                 precio={precio}
+                 imagen={imagen}
+                 count={count}
+                //  onAdd={onAdd}
+                 addCart={addCart}
+                 >
+                    <Button 
+                        onClick={onAdd}
+                        href='#' 
+                        variant="contained"
+                        color="error">
+                            {tituloBtn}
+                    </Button>
+                </Alert>
             </div>
          </>
     )
@@ -43,7 +54,10 @@ const ItemCount = ({titulo,precio,imagen,stock,showBtn,setShowBtn, tituloBtn})=>
 }
 export default ItemCount;
 
-
+// onClick={() => {
+//     addCart({titulo,precio,imagen,count,id});
+//     onAdd();
+//     }}
 
 
 

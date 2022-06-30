@@ -1,15 +1,23 @@
 import Item from './Item/Item';
-
+import { Grid } from '@mui/material';
 
 const ItemList = ({listaProd})=>{  
+
     return( 
-        listaProd.map( (data)=>{
+        <>
+        
+        {listaProd.map( (data)=>{
             return(
-                <div item md={4} key={listaProd.id}>
-                    <Item  datos={data} /></div>   
+                <>
+                <Grid item md={3} key={listaProd.id}>
+                    <Item  datos={data} />
+                </Grid>   
+                </>
             )
-        })        
+        })}
+        </>     
     )
 }
 
 export default ItemList;
+

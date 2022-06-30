@@ -1,18 +1,24 @@
-import { useEffect , useState } from 'react';
 import ItemDetail from './ItemDetail/ItemDetail';
-import { useParams } from 'react-router-dom';
+import CartContext from '../../context/CartContext';
+import db from './../../utils/firebaseConfig';
 
 import {doc, getDoc} from 'firebase/firestore';
-import db from './../../utils/firebaseConfig';
+import { useEffect , useState ,useContext } from 'react';
+import { useParams } from 'react-router-dom';
+
+
+
 
 const ItemDetailContainer = ()=>{
     const { id } = useParams();
     const  [ data , setData] = useState({});
-
-    useEffect( ()=>{
+    const {setLoading} = useContext(CartContext);
+    
+    useEffect( ()=>{ 
         getItems()
         .then( (prod)=>{
             setData(prod)
+            setLoading(false)
         })
 
     },[id])
@@ -25,13 +31,10 @@ const ItemDetailContainer = ()=>{
         return product;
     }
 
-    // setData(prod.find( (data)=>{
-    //     // eslint-disable-next-line
-    //     return data.id == id}))
-
     return(
+        <>
         <ItemDetail data={data}/>
-        
+        </>
     )
 }
 

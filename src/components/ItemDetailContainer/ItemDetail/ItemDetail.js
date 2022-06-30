@@ -1,31 +1,53 @@
 import './ItemDetail.css'
 import ItemCount from './ItemCount/ItemCount';
 import ItemListContainer from './../../ItemListContainer/ItemListContainer';
+import CartContext from '../../../context/CartContext';
 
-import { Button, Grid } from '@mui/material';
+import { Button, Grid, Skeleton, Box } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 
+import { useContext } from 'react';
 import { useState} from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link } from 'react-router-dom'; 
 
 const ItemDetail= ({data})=>{
-    const {nombre,titulo,precio,imagen,stock,detalle} = data;
+    const {nombre,titulo,precio,imagen,stock,detalle,id,count} = data;
     const [showBtn, setShowBtn] = useState(false);
-    console.log('cantidad de productos comprados:',showBtn);
+    const {removeCart, loading } = useContext(CartContext);
 
+    const returnItem =()=>{
+        setShowBtn(false);
+        removeCart(id)
+    }
     return(
         <>
-        <Grid container className='detalle'> 
+        <Grid container  className='detalle'> 
             <Grid item md={5}>
-                <div>           
-                    <img src={`/prod/${imagen}`} alt={titulo}/>   
-                </div>
+                {loading?
+                (<Skeleton
+                    animation="wave"
+                    variant="rectangular"
+                    height={500}
+                    width={355}
+                    sx={{ marginLeft: '20%'}}
+                 />)
+                :
+                (<div>           
+                <img src={`/prod/${imagen}`} alt={titulo}/>   
+            </div>)
+            }
+
             </Grid>
 
             <Grid item md={6}>
-            <h1>{nombre}-{titulo}</h1>
-                <h2>${precio}</h2>
+            {loading ? (
+                <Box sx={{display: 'flex',  flexDirection:'column'}}>
+                <Skeleton sx={{ margin: '10px' }} variant="h1"  animation="wave" />
+                <Skeleton sx={{ width: '80px', alignSelf:'center' }} variant="h2"  animation="wave" />
+                </Box>
+            )
+            :(<><h1>{nombre}-{titulo}</h1>
+                <h2>${precio}</h2></>)}
                 <p> 12 cuotas sin interés - 
                     20% de descuento pagando con Efectivo Contraentrega para Envíos en moto- 
                     Transferencia o Deposito bancario - Efectivo o Débito en sucursal.</p>
@@ -38,8 +60,10 @@ const ItemDetail= ({data})=>{
                  titulo={titulo}
                  precio={precio}
                  imagen={imagen}
+                 id={id}
+                 count={count}
                  tituloBtn='AGREGAR AL CARRITO'
-                />              
+                />           
                  : 
                 <> 
                 <h4>SELECCIONASTE {showBtn} ITEM/S.</h4>
@@ -50,7 +74,9 @@ const ItemDetail= ({data})=>{
                         TERMINAR COMPRA  
                     </Link> 
                 </Button>
-                <Button color="error"><EditIcon /></Button>
+                <Button onClick={() => returnItem()} color="error">
+                    <EditIcon /> 
+                </Button>
                 </>
                 } 
 
@@ -60,7 +86,16 @@ const ItemDetail= ({data})=>{
 
         <Grid >
             <h2>Descripción</h2>
-            <p>{detalle}</p>
+            {loading?
+                (   <><Box>
+                    <Skeleton variant="text"  animation="wave" />
+                    <Skeleton variant="text"  animation="wave" />
+                    <Skeleton variant="text"  animation="wave" />
+                    <Skeleton variant="text"  animation="wave" />
+                    </Box></>)
+                :
+                (
+            <p>{detalle}</p>)}
         </Grid>
             
         <Grid>

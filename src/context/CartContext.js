@@ -5,7 +5,8 @@ const CartContext = createContext();
 const CartProvider = ({children})=>{
     const [cartListItem, setCartListItem] = useState([]);
     const [ total, setTotal] = useState(0); 
-            
+    const [loading, setLoading] = useState(true);
+    const i = [0,1,2,3]
     const addCart = (prod)=>{
         let isInCart = cartListItem.find(cartItem => cartItem.id === prod.id)
         if(!isInCart){
@@ -13,22 +14,23 @@ const CartProvider = ({children})=>{
             return setCartListItem(cartListItem => [...cartListItem, prod])
             
         }
-        
+         
     }
 
     const removeCart = (id, precio, count)=>{
         const arrayRest = cartListItem.filter((prod) => prod.id !== id)
         setCartListItem(arrayRest);
-        setTotal(total - precio * count);
+        return(setTotal(total - precio * count))
+        
     };
-
+ 
     const clear = (id)=>{
         setCartListItem([]);
         cartListItem(0);
     }
 
     const data = {
-        cartListItem,addCart,removeCart,clear,total
+        cartListItem,addCart,removeCart,clear,total,loading, setLoading,i
     }   
 
         return(

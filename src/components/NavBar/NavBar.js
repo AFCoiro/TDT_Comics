@@ -1,5 +1,11 @@
-import * as React from 'react';
 import './NavBar.css';
+import CartWidgetNav from './CartWidget/CartWidget';
+import CartContext from '../../context/CartContext';
+
+import * as React from 'react';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,22 +15,19 @@ import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
-import CartWidgetNav from './CartWidget/CartWidget';
 
 
 const pages = ['marvel', 'dc', 'ivrea'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+  const {cartListItem} = useContext(CartContext);
 
   return (
     
@@ -92,8 +95,15 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0 ,
+               display:'flex',
+               flexDirection:'row',
+               alignItems:'flex-end',
+               marginBottom:'5px'
+                }}>
+              
             <CartWidgetNav/>
+            <p>{cartListItem.length}</p>
           </Box>
           
         </Toolbar>

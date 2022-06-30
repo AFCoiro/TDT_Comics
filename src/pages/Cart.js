@@ -1,16 +1,13 @@
 import './pages.css';
 import db from './../utils/firebaseConfig';
-import ItemCount from '../components/ItemDetailContainer/ItemDetail/ItemCount/ItemCount';
+import CartModal from './cartModal/CartModal';
+import CartContext from '../context/CartContext';
 
 import * as React from 'react';
 import { useContext, useState } from 'react';
-import CartContext from '../context/CartContext';
-import CartModal from './cartModal/CartModal'
-import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
-
+import { Link } from 'react-router-dom';
 import {addDoc, collection} from 'firebase/firestore';
 
-import { Link } from 'react-router-dom';
 import { Grid } from "@mui/material";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -23,13 +20,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
+import EditIcon from '@mui/icons-material/Edit';
 
 const Cart = ()=>{ 
         const options = ['Buenos Aires','Ciudad Autónoma de Bs.As.','Catamarca','Chaco','Chubut','Córdoba','Corrientes','Entre Ríos','Formosa','Jujuy','La Pampa','La Rioja','Mendoza','Misiones','Neuquén','Río Negro','Salta','San Juan','San Luis','Santa Cruz','Santa Fe','Santiago del Estero','Tierra del Fuego','Tucumán'];
 
         const [value, setValue] = React.useState(options[0]);
         const [inputValue, setInputValue] = useState('');
-        const {cartListItem, removeCart, total} = useContext(CartContext);
+        const {cartListItem, removeCart,clear, total} = useContext(CartContext);
         const [showModal, setShowModal] = useState(false);
         const [compra, setCompra] = useState();
         const [buyerV, setBuyerV] = useState(
@@ -48,6 +47,9 @@ const Cart = ()=>{
             setBuyerV({...buyerV, [e.target.name] : e.target.value})
 
         }
+
+        let date = new Date();
+        let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear();
         
         const [oc, seOC] = useState({
             buyer: {},
@@ -57,7 +59,8 @@ const Cart = ()=>{
                     title: item.titulo,
                     price: item.precio,
                 }}),
-            total : total
+            total : total,
+            date: output
         })
 
         const pushFB = async (newOC)=>{
@@ -83,7 +86,7 @@ const Cart = ()=>{
                                 </TableRow> 
                             </TableHead>
                             {cartListItem.map((data) =>{ 
-                const {id,titulo,precio,imagen,count,stock} = data;
+                const {id,titulo,precio,imagen,count} = data;
                 return( 
                             <TableBody>
                                 <TableRow>
@@ -99,10 +102,10 @@ const Cart = ()=>{
                                          alt={`${titulo}`} />
                                     </TableCell>
                                     <TableCell align="center"> 
-                                        <ItemCount 
-                                        precio={precio}
-                                        stock={stock}
-                                        tituloBtn='EDITAR'/>  
+                                        {count}
+                                        <Link to={`/product/${id}`}
+                                         onClick={() => removeCart(id, precio,count)}
+                                         ><EditIcon /> </Link> 
                                     </TableCell>
                                     <TableCell align="center">
                                         ${precio*count}
@@ -179,7 +182,17 @@ const Cart = ()=>{
                         {compra? (
                             <>
                             <h1 className='CompraExitosa'>¡Exitosa!</h1>
-                            <p>Tu pedido fue confirmado con la orden nº{compra}. Te enviaremos todos los datos a tu email.</p>
+                            <p>Tu pedido fue confirmado. Te enviaremos todos los datos a tu email.</p>
+                            <p>Orden nº:{compra}</p>
+                            <p>Fecha: {output}</p>
+                            <Button 
+                            variant="contained" 
+                            color="error"
+                            className='btnDe'
+                            onClick={clear}
+                            >
+                                <Link to={'/'}>aceptar</Link>
+                            </Button>
                             </>
                         ):(
                             <form 

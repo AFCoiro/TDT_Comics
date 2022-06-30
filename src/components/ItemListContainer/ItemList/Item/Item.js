@@ -1,10 +1,13 @@
-import { Button, Grid } from '@mui/material';
+import CartContext from '../../../../context/CartContext';
+import Alert from './../../../Alert/Alert';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+
+import { Button, Grid } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import CartContext from '../../../../context/CartContext';
 
+ 
 const Item = ({datos})=>{
     const {id,nombre,titulo,precio,imagen} = datos;
     const {addCart} = useContext(CartContext)
@@ -35,17 +38,23 @@ return(
              variant="contained"
              color="error"
              className='btnDetalle'
-             onClick={()=> addCart({id,nombre,titulo,precio,imagen,count:1})}
-                ><AddShoppingCartIcon className="MyCart"/>
+             
+                ><Alert id={id}
+                 nombre={nombre}
+                 titulo={titulo}
+                 precio={precio}
+                 imagen={imagen}
+                 addCart={addCart}
+                 count={1}><AddShoppingCartIcon className="MyCart"/></Alert>
             </Button>
             </Grid>
 
         </Grid>
-
+        
 
     </div>
     )
 }
 export default Item;
     
-
+// onClick={()=> addCart({id,nombre,titulo,precio,imagen,count:1})}

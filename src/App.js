@@ -8,6 +8,8 @@ import Detail from './pages/Detail';
 import Categories from './pages/Categories';
 import Cart from './pages/Cart';
 import { CartProvider } from './context/CartContext';
+
+
 function App() {
 
   return (
@@ -18,13 +20,14 @@ function App() {
             <header>
                 <ResponsiveAppBar/>
             </header>
-            <Routes>
+
+            <Routes> 
                 <Route path='*' element="error 404- no se encontró la pagina" />
                 <Route path='/' element={<Home />} />
                 <Route path='/product/:id' element={<Detail />} />
                 <Route path='/products/:category' element={<Categories />} />
                 <Route path='/cart' element={<Cart />} />
-            </Routes>
+            </Routes> 
 
             <footer  
               className="footer">
