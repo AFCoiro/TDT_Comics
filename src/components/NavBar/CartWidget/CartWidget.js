@@ -63,28 +63,30 @@ return(
                             </TableRow>
                             </TableHead>
                             <TableBody>
-                            {cartListItem.map((item) => (
+                            {cartListItem.map((item) => {
+                                const {id,titulo,precio,imagen,count} = item;
+                                return(
                                 <TableRow
-                                key={item.id}
+                                key={id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell 
                                         component="th" 
                                         scope="row">
-                                        <img className='imgCart' src={item.imagen} alt={`${item.titulo}`} />
+                                        <img className='imgCart' src={imagen} alt={`${titulo}`} />
                                     </TableCell>
-                                    <TableCell align="right">{item.titulo}</TableCell>
-                                    <TableCell align="right">{item.count}</TableCell>
-                                    <TableCell align="right">${item.precio*item.count}</TableCell>
+                                    <TableCell align="right">{titulo}</TableCell>
+                                    <TableCell align="right">{count}</TableCell>
+                                    <TableCell align="right">${precio*count}</TableCell>
                                     <TableCell align="right">
                                         <Button 
                                             color="error"
-                                            onClick={() => removeCart(item.id)}>
+                                            onClick={() => removeCart(id)}>
                                             <DeleteIcon/>
                                         </Button>
                                     </TableCell>
                                 </TableRow>
-                                ))}
+                            )})}
                             </TableBody>
                         </Table>
                     </TableContainer>

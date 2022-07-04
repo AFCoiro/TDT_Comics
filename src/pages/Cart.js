@@ -64,6 +64,15 @@ const Cart = ()=>{
             date: output
         })
 
+        const [enableButton, setEnableButton] = useState(false);
+        const emailMatch = (e)=>{
+           if( e.target.value === buyerV.mail){
+             setEnableButton(true)
+            
+            }
+        }
+
+
         const pushFB = async (newOC)=>{
             const ordenesFB = collection(db,'ordenes')
             const ocDoc = await addDoc(ordenesFB, newOC)
@@ -197,16 +206,19 @@ const Cart = ()=>{
                           <TextField 
                               className='FormItem'
                               id="outlined-basic" 
+                              type="text"
                               name="name"
-                              label="Nombre y Apellido" 
+                              label="Nombre y Apellido"
                               variant="outlined"
                               value={buyerV.name}
                               onChange={handleChange}
                               required
+                              title="El nombre y apellido solo pueden contener letras."
                           />
                           <TextField 
                               className='FormItem'
-                              id="outlined-basic" 
+                              id="outlined-basic"
+                              type='number' 
                               name="phone"
                               label="Teléfono" 
                               variant="outlined" 
@@ -217,12 +229,25 @@ const Cart = ()=>{
                           <TextField 
                               className='FormItem'
                               id="outlined-basic" 
+                              type="email"
                               name="mail"
                               label="e-mail" 
                               variant="outlined" 
                               value={buyerV.mail}
                               onChange={handleChange}
+                              title='El correo tieneque conteneer la siguiente estructura : usuario@ejemplo.com'
                               required
+                          />
+                          <TextField 
+                              className='FormItem'
+                              id="outlined-basic" 
+                              type="email"
+                              name="mailCheck"
+                              label="validar e-mail" 
+                              variant="outlined"
+                              required
+                              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                              onChange={emailMatch}
                           />
                           <Button
                           className='btnDetalle FormItem'
@@ -230,7 +255,8 @@ const Cart = ()=>{
                           color="error"
                            type="submit"
                            onSubmit={clear}
-                           >COMPRAR
+                           disabled={!enableButton}>
+                           COMPRAR
                            </Button>
                       </form> 
                         )}

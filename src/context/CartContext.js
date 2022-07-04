@@ -5,6 +5,7 @@ const CartContext = createContext();
 const CartProvider = ({children})=>{
     const [cartListItem, setCartListItem] = useState(JSON.parse(localStorage.getItem('productos')) || [] );
     const [ total, setTotal] = useState(0); 
+    const [ cantTot, setCantTot] = useState(0); 
     const [loading, setLoading] = useState(true);
 //Hook predeterminado del MUI para el Alert
     const [state, setState] = useState({
@@ -33,29 +34,25 @@ const CartProvider = ({children})=>{
             </>
             )    
     }
-    
 
     const addCart = (prod)=>{
         let isInCart = cartListItem.find(cartItem => cartItem.id === prod.id)
         if(!isInCart){
             setTotal(total + prod.precio * prod.count);
-            // localStorage.setItem('productos',JSON.stringify([...cartListItem, prod]))
+            setCantTot(cantTot +  prod.count )
+            localStorage.setItem('productos',JSON.stringify([...cartListItem, prod]))
             return setCartListItem(cartListItem => [...cartListItem, prod])
         }   
     }
      
-
     const removeCart = (id, precio, count)=>{
-        const arrayRest = cartListItem.filter((prod) => prod.id !== id)
-         setCartListItem(arrayRest);
-        // setCartListItem(localStorage.setItem(('productos', (arrayRest)) || []));
-            return(setTotal(total - precio * count))
-        
+        setCartListItem (cartListItem.filter((prod) => prod.id !== id))
+        localStorage.setItem('productos', JSON.stringify(cartListItem.filter((prod) => prod.id !== id)))
+        setTotal(total - precio * count)
     };
  
     const clear = ()=>{
-        // setCartListItem(localStorage.removeItem('productos') || [] );
-        
+        setCartListItem(localStorage.clear('productos') || [] );
         setCartListItem([]);
     }
 
@@ -65,6 +62,7 @@ const CartProvider = ({children})=>{
         removeCart,
         clear,
         total,
+        cantTot,
         loading,
          setLoading,
          iMap,

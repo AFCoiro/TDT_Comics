@@ -27,7 +27,7 @@ const ResponsiveAppBar = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  const {cartListItem} = useContext(CartContext);
+  const {cartListItem,cantTot} = useContext(CartContext);
 
   return (
     
@@ -103,8 +103,10 @@ const ResponsiveAppBar = () => {
               
             <CartWidgetNav/>
             {cartListItem.length > 0 &&
-                <p>{cartListItem.length}</p>
-            }
+              
+                 <p>{cantTot}</p>
+              }
+               
           </Box>
           
         </Toolbar>
