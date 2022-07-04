@@ -41,6 +41,7 @@ const Cart = ()=>{
             e.preventDefault();
             seOC({...oc, buyer : buyerV})
             pushFB({...oc, buyer : buyerV})
+            
         }
 
         const handleChange=(e)=>{
@@ -74,7 +75,7 @@ const Cart = ()=>{
             <h1>CARRITO DE COMPRAS</h1>
             {(cartListItem.length !== 0) ? 
             <Grid container>
-                <Grid item md='8'>
+                <Grid item md={8}>
                     <TableContainer component={Paper}>
                         <Table  aria-label="simple table">
                             <TableHead>
@@ -88,17 +89,16 @@ const Cart = ()=>{
                             {cartListItem.map((data) =>{ 
                 const {id,titulo,precio,imagen,count} = data;
                 return( 
-                            <TableBody>
+                            <TableBody key={id}>
                                 <TableRow>
-                                    <TableCell 
-                                        key={id}
+                                    <TableCell
                                         align="center"
                                         component="th" 
                                         scope="row">
                                         <p>{titulo}</p>
                                         <img 
                                          className='imgCart'
-                                         src={`/prod/${imagen}`} 
+                                         src={imagen} 
                                          alt={`${titulo}`} />
                                     </TableCell>
                                     <TableCell align="center"> 
@@ -123,14 +123,11 @@ const Cart = ()=>{
                         </Table>
                     </TableContainer>
                 </Grid>
-                <Grid item md='4'>
-                    <TableContainer component={Paper}>
-                        <Table>
-                            <TableHead>
-                                <h2>Total Del Carrito:</h2>
-                                <p>Introducí tu dirección para ver las opciones de envío.</p>
-                            </TableHead>
-                            <TableBody>
+                <Grid item md={4} component={Paper}>
+                                    <div>
+                                        <h2>Total Del Carrito:</h2>
+                                        <p>Introducí tu dirección para ver las opciones de envío.</p>
+                                    </div>
                                 <div className='checkField'>
                                     <div className="checkFieldSons">
                                         <Autocomplete
@@ -172,9 +169,7 @@ const Cart = ()=>{
                                         </Button>
                                     </div>
                                 </div>
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+
                 </Grid>
                 <CartModal 
                     open={showModal}
@@ -234,6 +229,7 @@ const Cart = ()=>{
                           variant="contained"
                           color="error"
                            type="submit"
+                           onSubmit={clear}
                            >COMPRAR
                            </Button>
                       </form> 

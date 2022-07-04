@@ -21,6 +21,7 @@ const Pagination = ({ listPerPage, totalList ,paginate }) => {
             >
             {pageNumbers.map(number =>(
                 <ToggleButton
+                    value='pag'
                     key={number}
                     onClick={()=>paginate(number)}
                 >

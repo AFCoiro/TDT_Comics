@@ -20,6 +20,7 @@ const ItemDetail= ({data})=>{
         removeCart(id)
     }
 
+
     return(
         <>
         <Grid container  className='detalle'> 
@@ -34,7 +35,7 @@ const ItemDetail= ({data})=>{
                  />)
                 :
                 (<div>           
-                <img src={`/prod/${imagen}`} alt={titulo}/>   
+                <img src={imagen} alt={titulo}/>   
             </div>)
             }
 
@@ -56,18 +57,17 @@ const ItemDetail= ({data})=>{
                 {!showBtn ?
                 <ItemCount
                  stock={stock} 
-                 showBtn={showBtn}
-                 setShowBtn={setShowBtn}
                  titulo={titulo}
                  precio={precio}
                  imagen={imagen}
                  id={id}
                  count={count}
+                 setShowBtn={setShowBtn}
                  tituloBtn='AGREGAR AL CARRITO'
                 />           
                  : 
                 <> 
-                <h4>SELECCIONASTE {showBtn} ITEM/S.</h4>
+                <h4>Este producto fue agregado a tu carrito de compras.</h4>
                 <Button
                     variant="contained" 
                     color="error">

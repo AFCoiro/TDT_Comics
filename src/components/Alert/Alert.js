@@ -1,62 +1,49 @@
+import CartContext from '../../context/CartContext';
+
+//importa de React
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
+import { useContext } from 'react';
+//importa de MUI
+import {  Snackbar } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 
-const Alert=({children,id,titulo,precio,imagen,count,onAdd,addCart}) =>{
+const Alert=({children}) =>{
+  const {state,setState} = useContext(CartContext);
 
-  const [state, setState] = React.useState({
-    open: false,
-    vertical: 'top',
-    horizontal: 'center',
-  });
+  const { vertical, horizontal, open } = state;
 
   const SnackAlert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
 
-  const { vertical, horizontal, open } = state;
-
-  const handleClick = (newState) => {
-    setState({ open: true, ...newState });
-    
-  };
-  
   const handleClose = () => {
     setState({ ...state, open: false });
-  };
+};
 
+//boton con: posición del alert,
   const buttons = (
-
-      <Button
-      
-      onClick={() => {
-        handleClick({vertical: 'top', horizontal: 'right'});
-        addCart({titulo,precio,imagen,count,id});
-        onAdd();
-        }}
-
-      >{children}
-      </Button>
-
+      <div>{children}</div>
   );
 
   return (
     <div>
       {buttons}
       <Snackbar
-        autoHideDuration={4000}
+        autoHideDuration={3000}
         anchorOrigin={{ vertical, horizontal }}
         open={open}
         onClose={handleClose}
         key={vertical + horizontal}
-      ><SnackAlert 
-      onClose={handleClose}
-      severity="success"
-      sx={{ width: '100%' }}>
-      ¡Se Agregó tu producto al Carrito!
-    </SnackAlert></Snackbar>
+      >
+        <SnackAlert
+          severity="success"
+          sx={{ width: '100%' }}>
+          ¡Se Agregó tu producto al Carrito!
+        </SnackAlert>
+      </Snackbar>
     </div>
   );
 }
 export default Alert;
+
+

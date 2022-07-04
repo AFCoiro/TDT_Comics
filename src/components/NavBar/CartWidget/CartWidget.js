@@ -45,71 +45,71 @@ return(
              MenuListProps={{'aria-labelledby': 'basic-button',}}
             >
             {(cartListItem.length === 0) ? 
-                        <><div className='vacio'>
+                        <div className='vacio'>
                             <p>¡Ups!Tu carrito está vacío :( </p>
                             <Button ><Link to={'/'} className='seguirCompra'>Seguir Comprando </Link></Button>
-                        </div></>
+                        </div>
                      :
-                    <>
+                    <div>
                     <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 400 }} aria-label="simple table">
-                        <TableHead>
-                        <TableRow>
-                            <TableCell></TableCell>
-                            <TableCell align="right">PRODUCTO</TableCell>
-                            <TableCell align="right">CANTIDAD</TableCell>
-                            <TableCell align="right">PRECIO</TableCell>
-                            <TableCell align="right"></TableCell>
-                        </TableRow>
-                        </TableHead>
-                        <TableBody>
-                        {cartListItem.map((item) => (
-                            <TableRow
-                            key={item.id}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell 
-                                    component="th" 
-                                    scope="row">
-                                    <img className='imgCart' src={`prod/${item.imagen}`} alt={`${item.titulo}`} />
-                                </TableCell>
-                                <TableCell align="right">{item.titulo}</TableCell>
-                                <TableCell align="right">{item.count}</TableCell>
-                                <TableCell align="right">${item.precio}</TableCell>
-                                <TableCell align="right">
-                                    <Button 
-                                        color="error"
-                                        onClick={() => removeCart(item.id)}>
-                                        <DeleteIcon/>
-                                    </Button>
-                                </TableCell>
+                        <Table sx={{ minWidth: 400 }} aria-label="simple table">
+                            <TableHead>
+                            <TableRow>
+                                <TableCell></TableCell>
+                                <TableCell align="right">PRODUCTO</TableCell>
+                                <TableCell align="right">CANTIDAD</TableCell>
+                                <TableCell align="right">PRECIO</TableCell>
+                                <TableCell align="right"></TableCell>
                             </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <div container className='cajaBtn'> 
-                    <Button
-                        align="center"
-                        variant="contained" 
-                        color="error"
-                        className='btnDetalle'>
-                        <Link to='/cart' 
-                            className='btnDetalle'
-                            >comprar
-                        </Link>
-                    </Button>
-                    <Button
-                        align="center"
-                        variant="contained" 
-                        color="error"
-                        className='btnDetalle '
-                        onClick={clear}
-                        >
-                        borrar todo
-                    </Button>
-                </div>
-                </>}
+                            </TableHead>
+                            <TableBody>
+                            {cartListItem.map((item) => (
+                                <TableRow
+                                key={item.id}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                    <TableCell 
+                                        component="th" 
+                                        scope="row">
+                                        <img className='imgCart' src={item.imagen} alt={`${item.titulo}`} />
+                                    </TableCell>
+                                    <TableCell align="right">{item.titulo}</TableCell>
+                                    <TableCell align="right">{item.count}</TableCell>
+                                    <TableCell align="right">${item.precio*item.count}</TableCell>
+                                    <TableCell align="right">
+                                        <Button 
+                                            color="error"
+                                            onClick={() => removeCart(item.id)}>
+                                            <DeleteIcon/>
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <div container className='cajaBtn'> 
+                        <Button
+                            align="center"
+                            variant="contained" 
+                            color="error"
+                            className='btnDetalle'>
+                            <Link to='/cart' 
+                                className='btnDetalle'
+                                >comprar
+                            </Link>
+                        </Button>
+                        <Button
+                            align="center"
+                            variant="contained" 
+                            color="error"
+                            className='btnDetalle '
+                            onClick={clear}
+                            >
+                            borrar todo
+                        </Button>
+                    </div>
+                </div>}
             </Menu>
     </div>
 )

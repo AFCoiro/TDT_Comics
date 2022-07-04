@@ -13,10 +13,13 @@
     justify-content: center;
 }
 .titulo{
-    height: 100px;
+    margin-top: 3px;
+    height: 50px;
+    
+    
 }
 .imgProd{
-    width: 150px;
+    width: 100%;
 }
 .btnDetalle{
     text-decoration: none;

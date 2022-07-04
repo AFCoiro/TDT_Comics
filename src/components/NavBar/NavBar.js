@@ -49,7 +49,6 @@ const ResponsiveAppBar = () => {
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
-              aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
             >
@@ -103,7 +102,9 @@ const ResponsiveAppBar = () => {
                 }}>
               
             <CartWidgetNav/>
-            <p>{cartListItem.length}</p>
+            {cartListItem.length > 0 &&
+                <p>{cartListItem.length}</p>
+            }
           </Box>
           
         </Toolbar>

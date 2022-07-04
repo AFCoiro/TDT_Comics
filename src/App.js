@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Detail from './pages/Detail';
 import Categories from './pages/Categories';
 import Cart from './pages/Cart';
+import Error404 from './pages/Error404';
 import { CartProvider } from './context/CartContext';
 
 
@@ -22,10 +23,11 @@ function App() {
             </header>
 
             <Routes> 
-                <Route path='*' element="error 404- no se encontró la pagina" />
+                <Route path='*' element={<Error404 />} />
                 <Route path='/' element={<Home />} />
                 <Route path='/product/:id' element={<Detail />} />
                 <Route path='/products/:category' element={<Categories />} />
+                <Route path='/products/category/:subcategory' element={<Categories />} />
                 <Route path='/cart' element={<Cart />} />
             </Routes> 
 
