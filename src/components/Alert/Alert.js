@@ -1,5 +1,5 @@
+//importa component
 import CartContext from '../../context/CartContext';
-
 //importa de React
 import * as React from 'react';
 import { useContext } from 'react';
@@ -8,10 +8,10 @@ import {  Snackbar } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 
 const Alert=({children}) =>{
+
   const {state,setState} = useContext(CartContext);
-
   const { vertical, horizontal, open } = state;
-
+  
   const SnackAlert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });

@@ -1,70 +1,21 @@
-# Getting Started with Create React App
+# Tienda de Don Tino-Comics
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TDT es una tienda online de comics y mangas. Mi intención es que tenga un enfoque dinámico, de navegación simple e intuitiva. Con un diseño sobrio y elegante.
+ 
+Cuenta con un navbar distribuido por las distintas editoriales. También cuenta con otro "sub-menú" donde se dividen los productos dependiendo sus títulos (Batman, Spiderman, etc.).
 
-## Available Scripts
+En cuanto a las decisiones tomadas a la hora de escribir el código, siempre traté de cumplir todas las consignas lo más al pie de la letra posible y adáptalo a mi proyecto de una u otra manera, pero tratando de escribir la menor cantidad de código posible, de ahí que utilicé algunas funciones anónimas, que por más que dificulten un poco a la vista, al ser de una sola línea, me resultó mas práctico hacerlo así que nombrándolas con variables. También intenté usar la desestructuración en los lugares que me parecieron más útiles para no cargar de parámetros el jsx.
+Mi intención siempre fue la de no repetir código, como vimos en las clases, pero en algunas ocasiones admito que tuve que hacerlo porque no quería llenar el context de tantas cosas o de hacer una cadena de anidados por 1 o 2 líneas de código extras, porque para que, a la hora de ver el código, se pueda tener a mano la funcionalidad de cada cosa y no andar buscando entre componente y componente.
 
-In the project directory, you can run:
+También soy consciente de que algunas de las funcionalidades que tengo en este proyecto son de las primeras clases, y a la hora de ver herramientas más "modernas" podría haberlas cambiado para mejorar el trabajo, pero siendo honesto, preferí no tocar algunas cosas dado que cumplía con su función correctamente y a la hora de hacer esta entrega, preferí agregar otro tipo de recursos para sumar al proyecto y presentar algo más completo en términos generales.
 
-### `npm start`
+En cuanto a las dependencias instaladas por NPM, además de las obligatorias y otras utilizadas en clase, como material UI (y la extensión de material icons), instalé swipper para los carrusel y sass para el estilado de la app.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Acompaño el link del video de la navegación:
 
-### `npm test`
+[https://screen-recorder-bucket.s3.ap-south-1.amazonaws.com/ScreenRecorder_2022-07-07_fcb80dc6-0b73-4165-8b5e-c37fc5455498.mp4]
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+¡Saludos y gracias por todo!
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+	Agustín Coiro

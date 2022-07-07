@@ -1,9 +1,10 @@
+//importa component
 import Alert from './../../../Alert/Alert';
 import CartContext from '../../../../context/CartContext';
-
+//importa de React
 import * as React from 'react';
 import { useState, useContext } from 'react';
-
+//importa de MUI
 import { Button } from '@mui/material';
 
 
@@ -12,11 +13,11 @@ const ItemCount = ({id,titulo,precio,imagen,stock,setShowBtn})=>{
     const {handleClick,addCart}= useContext(CartContext);
     const onAdd = ()=>{
         setShowBtn(true);
-        // showBtn(count);
     }
     return(
         <>
-            <div className='Contador'>
+        <div className='countcont'>
+            <div className='count'>
                 <Button onClick={()=> 
                     setCount(count - 1)} 
                     disabled={count === 0}>
@@ -42,6 +43,7 @@ const ItemCount = ({id,titulo,precio,imagen,stock,setShowBtn})=>{
                     </Button>
                 
             </div>
+        </div>
          </>
     )
 

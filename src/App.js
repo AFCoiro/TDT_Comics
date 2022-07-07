@@ -1,6 +1,6 @@
 
-import './App.css';
-import ResponsiveAppBar from './components/NavBar/NavBar'
+import './App.scss';
+import NavBar from './components/NavBar/NavBar'
 import React from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
@@ -9,7 +9,7 @@ import Categories from './pages/Categories';
 import Cart from './pages/Cart';
 import Error404 from './pages/Error404';
 import { CartProvider } from './context/CartContext';
-
+import Footer from './components/Footer/Footer';
 
 function App() {
 
@@ -19,7 +19,7 @@ function App() {
         <BrowserRouter>
 
             <header>
-                <ResponsiveAppBar/>
+                <NavBar/>
             </header>
 
             <Routes> 
@@ -31,9 +31,8 @@ function App() {
                 <Route path='/cart' element={<Cart />} />
             </Routes> 
 
-            <footer  
-              className="footer">
-                <p>Diseñado por Agustín Coiro</p>
+            <footer>
+                <Footer/>
             </footer>
             
         </BrowserRouter>

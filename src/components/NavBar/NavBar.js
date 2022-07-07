@@ -1,11 +1,11 @@
-import './NavBar.css';
+//impota de component
 import CartWidgetNav from './CartWidget/CartWidget';
 import CartContext from '../../context/CartContext';
-
+//importa de react/react-router-dom
 import * as React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-
+//importa de mui
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,9 +17,9 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
 
-const pages = ['marvel', 'dc', 'ivrea'];
+const pages = ['marvel', 'dc comics', 'ivrea'];
 
-const ResponsiveAppBar = () => {
+const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -33,86 +33,71 @@ const ResponsiveAppBar = () => {
     
     <AppBar
      position="fixed" 
-     className="MenuApp"
-     sx={{
-      bgcolor: 'error.main'
-    }}
      >
-      <Container maxWidth="xl">
-        <Toolbar disableGutters >
-
-        <Link to={`/`}><img src="./logomio.png" alt="logo"/></Link> 
-          
-           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} >      
-            
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          
-          
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 1, color: 'white', display: 'block' }}
-              >
-              <Link className='BtnLinks' to={`/products/${page}`}>{page}</Link>
+      <Container maxWidth="xl" className="MenuApp">
+        <Toolbar disableGutters>
+            <Link to={`/`}><img src="./logomio.png" alt="logo TDT" className='logoImg'/></Link> 
+              
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} >      
                 
-              </Button>
-            ))}
-          </Box>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
+                />
 
-          <Box sx={{ flexGrow: 0 ,
-               display:'flex',
-               flexDirection:'row',
-               alignItems:'flex-end',
-               marginBottom:'5px'
-                }}>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{
+                    display: { xs: 'block', md: 'none' },
+                  }}
+                >
+                  {pages.map((page) => (
+                    <MenuItem key={page} onClick={handleCloseNavMenu} >
+                      <Typography textAlign="center">{page}</Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+            </Box>
               
-            <CartWidgetNav/>
-            {cartListItem.length > 0 &&
               
-                 <p>{cantTot}</p>
-              }
-               
-          </Box>
-          
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} className='ContPages'>
+                {pages.map((page) => (
+                  <Button
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 1, color: 'white', display: 'block' }}
+                  >
+                  <Link className='BtnPages' to={`/products/${page}`}>{page}</Link>
+                    
+                  </Button>
+                ))}
+            </Box>
+
+            <Box className='boxCart'>
+                <CartWidgetNav/>
+                {cartListItem.length > 1 &&
+                    <p>{cantTot}</p>
+                  } 
+            </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default NavBar;
 

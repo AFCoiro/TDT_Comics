@@ -1,0 +1,58 @@
+.ItemClass{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px !important;
+    background-color: var(--color-Blanco1) !important;
+    box-shadow: 2px 2px 2px var(--color-Negro3);
+    margin-top: 24px;
+    padding: 3px;
+    width: 250px;
+
+    .imgItem{
+        width:100%;
+        border-radius: 20px 20px 0 0;
+    }
+    .NombreItem{
+        padding-top: 8px;
+        font-size: 19px;;
+    }
+    .tituloItem{
+        font-size: 15px; 
+        margin-bottom: 24px;
+    }
+    .contBtnsItem{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 8px 8px 0;
+        width: 100%;
+        .BtnsItem{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            padding-left: 8px;
+            .btnDetalleItem{
+                height: 32px;
+                margin: 0 4px 4px 0;
+                padding: 4px 0 0 0;
+                background-color: var(--color-Rojo1);  
+                display: flex;
+                .MyCart{
+                    color: var(--color-Blanco1);
+                }
+            }
+        }
+        .precioItem{
+            align-self: center;
+        }
+    }
+}
+.btnPag{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 24px;
+
+} 

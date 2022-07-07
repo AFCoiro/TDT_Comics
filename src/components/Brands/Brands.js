@@ -1,13 +1,10 @@
-// import {collection, getDocs, query, where} from 'firebase/firestore';
-// import db from './../../utils/firebaseConfig';
-// import { useState , useEffect } from 'react'
 import BrandCard from './BrandCard/BrandCard';
-
+//contenedor de cards de las categorias de comics
 const Brands = ()=>{
 
     return(
         <>
-        <BrandCard/>
+        <BrandCard className='Brand'/>
         </>
     )
 }

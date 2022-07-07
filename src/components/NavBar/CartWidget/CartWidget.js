@@ -1,10 +1,9 @@
-import './../NavBar.css';
 import CartContext from '../../../context/CartContext';
-
+//importa de react/react-router-dom
 import * as React from 'react';
 import { useState , useContext } from 'react';
 import {Link} from 'react-router-dom';
-
+//importa de mui
 import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
@@ -28,14 +27,15 @@ const handleClick = (e)=>{setwindowOpen(e.currentTarget)};
 const handleClose = () =>{setwindowOpen(null)};
 
 return(
-    <div className='cart-container-icon'>
-        <ShoppingCartSharpIcon 
-         className="MyCart"
-         aria-controls={open ? 'basic-menu': undefined}
-         aria-haspopup="true"
-         aria-expanded={open ? 'true' : undefined}
-         onClick={handleClick}
-         />
+    <div>
+            <ShoppingCartSharpIcon 
+            className="MyCart"
+            aria-controls={open ? 'basic-menu': undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+            />
+
             <Menu
              className='MenuCarrito'
              id='basic-menu'
@@ -45,21 +45,21 @@ return(
              MenuListProps={{'aria-labelledby': 'basic-button',}}
             >
             {(cartListItem.length === 0) ? 
-                        <div className='vacio'>
+                        <div className='menuVacio'>
                             <p>¡Ups!Tu carrito está vacío :( </p>
-                            <Button ><Link to={'/'} className='seguirCompra'>Seguir Comprando </Link></Button>
+                            <Button ><Link to={'/'}  className='seguirCompra'>Seguir Comprando </Link></Button>
                         </div>
                      :
                     <div>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 400 }} aria-label="simple table">
                             <TableHead>
-                            <TableRow>
+                            <TableRow className='headerWidget'>
                                 <TableCell></TableCell>
                                 <TableCell align="right">PRODUCTO</TableCell>
                                 <TableCell align="right">CANTIDAD</TableCell>
                                 <TableCell align="right">PRECIO</TableCell>
-                                <TableCell align="right"></TableCell>
+                                <TableCell align="right"> BORRAR</TableCell>
                             </TableRow>
                             </TableHead>
                             <TableBody>
@@ -68,9 +68,11 @@ return(
                                 return(
                                 <TableRow
                                 key={id}
+
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell 
+                                    className='itemsWidget'
                                         component="th" 
                                         scope="row">
                                         <img className='imgCart' src={imagen} alt={`${titulo}`} />
@@ -79,8 +81,7 @@ return(
                                     <TableCell align="right">{count}</TableCell>
                                     <TableCell align="right">${precio*count}</TableCell>
                                     <TableCell align="right">
-                                        <Button 
-                                            color="error"
+                                        <Button
                                             onClick={() => removeCart(id)}>
                                             <DeleteIcon/>
                                         </Button>

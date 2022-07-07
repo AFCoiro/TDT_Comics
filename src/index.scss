@@ -1,0 +1,17 @@
+@use './App.scss';
+@use './Sass/Abstracts/varables';
+@use './Sass/Base/base';
+@use './Sass/Base/resets';
+
+//Pages
+@use './Sass/Pages/cart';
+@use './Sass/Pages/catgories';
+@use './Sass/Pages/error404';
+
+//Components
+@use './components/NavBar/navBar';
+@use './components/Footer/footer';
+@use './components/ItemDetailContainer/itemDetail';
+@use './components/ItemListContainer/itemList';
+@use './components/Brands/brands';
+@use './components/Carousel/carousel';

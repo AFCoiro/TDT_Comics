@@ -1,12 +1,13 @@
-import './ItemListContainer.css'
+//importa de component
 import ItemList from './ItemList/ItemList'
 import db from "./../../utils/firebaseConfig";
 import Pagination from '../Pagination/Pagination';
 import CartContext from '../../context/CartContext';
+//importa de react/react-router-dom/firestore
 import { useState , useEffect,useContext } from 'react'
 import { collection, getDocs } from "firebase/firestore";
+//importa de mui
 import { Container } from '@mui/material';
-
 import Grid from '@mui/material/Grid';
 
 const ItemListContainer = ({titleCont})=>{   
@@ -28,6 +29,7 @@ const ItemListContainer = ({titleCont})=>{
     }, [])// eslint-disable-line react-hooks/exhaustive-deps
     //Busqué por todos lados el motivo por el cual me tirara este warning: React Hook useEffect has missing dependencies: 'getProducts' and 'getSubProducts'. Por lo que llegue a entender, despues de mucha prueba y error, es que al parecer no es un error de JavaScript/React, sino una advertencia de ESLint (eslint-plugin-react-hooks). Por eso, es que puse el eslint-diable-line.
 
+    //trae los items de firestore
     const getItems = async () =>{
         
         const listadoSnapshot = await getDocs(collection(db, "listados"));
@@ -40,7 +42,7 @@ const ItemListContainer = ({titleCont})=>{
         
         return (productList)
     }
-
+    //paginacion del itemListCointainer
     const indexOfLastList = currentPage * listPerPage;
     const indexOfFirstList = indexOfLastList - listPerPage;
     const currentList = list.slice(indexOfFirstList, indexOfLastList);
@@ -49,7 +51,7 @@ const ItemListContainer = ({titleCont})=>{
 
     return(
         <>
-         <Container>
+         <Container sx={{marginTop:'64px' }}>
             <h2>{titleCont}</h2>
             <Grid   
                 container

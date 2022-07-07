@@ -1,0 +1,72 @@
+.cartCont{
+    margin-top: 10%;
+    h1{
+        padding-bottom: 64px;
+    }
+    .imgCart{
+        height: 200px;
+    }
+    h2{padding-bottom: 16px;
+    }
+    .checkField{
+        display: flex;
+        flex-direction: column;
+        align-items:flex-start;
+        padding: 15px ;
+        .checkFieldSons{
+            margin: 24px;
+            .check{
+                display: flex;
+                flex-direction: row;
+                font-weight: bold;
+                color: var(--color-Negro1);
+                font-size: 28px;
+            }
+        }     
+    }
+    .carritoVacio{
+        padding-bottom: 43%;
+        .aca{
+            color: var(--color-Rojo1);
+        }
+    }
+}
+.FormCompra{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .FormItem{
+        margin-bottom: 5% !important;
+    }
+}
+.CompraCont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p{
+        padding-top: 16px;
+    }
+    .CompraContItems{
+        .CompraExitosa{
+            color: var(--color-Verde1);
+            font-weight: bold;
+            text-align: center;
+        } 
+    }
+    .btnDe{
+        margin-top: 16px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

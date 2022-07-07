@@ -1,4 +1,3 @@
-import './pages.css';
 import db from './../utils/firebaseConfig';
 import CartModal from './cartModal/CartModal';
 import CartContext from '../context/CartContext';
@@ -24,6 +23,7 @@ import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
 import EditIcon from '@mui/icons-material/Edit';
 
 const Cart = ()=>{ 
+    //array de provincias para elegir el envio. Es simplemente de relleno.
         const options = ['Buenos Aires','Ciudad Autónoma de Bs.As.','Catamarca','Chaco','Chubut','Córdoba','Corrientes','Entre Ríos','Formosa','Jujuy','La Pampa','La Rioja','Mendoza','Misiones','Neuquén','Río Negro','Salta','San Juan','San Luis','Santa Cruz','Santa Fe','Santiago del Estero','Tierra del Fuego','Tucumán'];
 
         const [value, setValue] = React.useState(options[0]);
@@ -36,22 +36,25 @@ const Cart = ()=>{
             phone:'',
             mail:''}
         );
-
+//submit de compra
         const handleSubmit=(e)=>{
             e.preventDefault();
             seOC({...oc, buyer : buyerV})
             pushFB({...oc, buyer : buyerV})
             
         }
-
+        
+//guarda los datos del usuario
         const handleChange=(e)=>{
             setBuyerV({...buyerV, [e.target.name] : e.target.value})
 
         }
 
+//fecha de la compra
         let date = new Date();
         let output = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear();
-        
+
+//llena todos los datos de compra y del usuario        
         const [oc, seOC] = useState({
             buyer: {},
             items: cartListItem.map( item => {
@@ -63,7 +66,7 @@ const Cart = ()=>{
             total : total,
             date: output
         })
-
+//berificacion de correo electronico de foma correcta
         const [enableButton, setEnableButton] = useState(false);
         const emailMatch = (e)=>{
            if( e.target.value === buyerV.mail){
@@ -72,7 +75,7 @@ const Cart = ()=>{
             }
         }
 
-
+//lleva la orden de compra a firebase
         const pushFB = async (newOC)=>{
             const ordenesFB = collection(db,'ordenes')
             const ocDoc = await addDoc(ordenesFB, newOC)
@@ -171,7 +174,7 @@ const Cart = ()=>{
                                         <Button
                                             variant="contained" 
                                             color="error"
-                                            className='btnDe'
+                                            className='checkFieldSons'
                                             onClick={()=>setShowModal(true)}
                                             >
                                             FINALIZAR COMPRA
@@ -184,81 +187,87 @@ const Cart = ()=>{
                     open={showModal}
                     handleClose={()=>setShowModal(false)}>
                         {compra? (
-                            <>
-                            <h1 className='CompraExitosa'>¡Exitosa!</h1>
-                            <p>Tu pedido fue confirmado. Te enviaremos todos los datos a tu email.</p>
-                            <p>Orden nº:{compra}</p>
-                            <p>Fecha: {output}</p>
-                            <Button 
-                            variant="contained" 
-                            color="error"
-                            className='btnDe'
-                            onClick={clear}
-                            >
-                                <Link to={'/'}>aceptar</Link>
-                            </Button>
-                            </>
+                            <div className='CompraCont'>
+                                <div className='CompraContItems'>
+                                    <h1 className='CompraExitosa'>¡Exitosa!</h1>
+                                    <p>Tu pedido fue confirmado. Te enviaremos todos los datos a tu email.</p>
+                                    <p>Orden nº:{compra}</p>
+                                    <p>Fecha: {output}</p>
+                                </div>
+
+                                <div>
+                                    <Button 
+                                    variant="contained" 
+                                    color="error"
+                                    className='btnDe'
+                                    onClick={clear}
+                                    > 
+                                        <Link to={'/'}>aceptar</Link>
+                                    </Button>
+                                </div>
+                            </div>
                         ):(
-                            <form 
+                        <form 
                             className="form-contact
                             FormCompra" 
-                            onSubmit={handleSubmit}>
-                          <TextField 
-                              className='FormItem'
-                              id="outlined-basic" 
-                              type="text"
-                              name="name"
-                              label="Nombre y Apellido"
-                              variant="outlined"
-                              value={buyerV.name}
-                              onChange={handleChange}
-                              required
-                              title="El nombre y apellido solo pueden contener letras."
-                          />
-                          <TextField 
-                              className='FormItem'
-                              id="outlined-basic"
-                              type='number' 
-                              name="phone"
-                              label="Teléfono" 
-                              variant="outlined" 
-                              value={buyerV.phone}
-                              onChange={handleChange}
-                              required
-                          />
-                          <TextField 
-                              className='FormItem'
-                              id="outlined-basic" 
-                              type="email"
-                              name="mail"
-                              label="e-mail" 
-                              variant="outlined" 
-                              value={buyerV.mail}
-                              onChange={handleChange}
-                              title='El correo tieneque conteneer la siguiente estructura : usuario@ejemplo.com'
-                              required
-                          />
-                          <TextField 
-                              className='FormItem'
-                              id="outlined-basic" 
-                              type="email"
-                              name="mailCheck"
-                              label="validar e-mail" 
-                              variant="outlined"
-                              required
-                              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                              onChange={emailMatch}
-                          />
-                          <Button
-                          className='btnDetalle FormItem'
-                          variant="contained"
-                          color="error"
-                           type="submit"
-                           onSubmit={clear}
-                           disabled={!enableButton}>
-                           COMPRAR
-                           </Button>
-                      </form> 
+                            onSubmit={handleSubmit}
+                        >
+                            <TextField 
+                                className='FormItem'
+                                id="outlined-basic" 
+                                type="text"
+                                name="name"
+                                label="Nombre y Apellido"
+                                variant="outlined"
+                                value={buyerV.name}
+                                onChange={handleChange}
+                                required
+                                title="El nombre y apellido solo pueden contener letras."
+                            />
+                            <TextField 
+                                className='FormItem'
+                                id="outlined-basic"
+                                type='number' 
+                                name="phone"
+                                label="Teléfono" 
+                                variant="outlined" 
+                                value={buyerV.phone}
+                                onChange={handleChange}
+                                required
+                            />
+                            <TextField 
+                                className='FormItem'
+                                id="outlined-basic" 
+                                type="email"
+                                name="mail"
+                                label="e-mail" 
+                                variant="outlined"  
+                                value={buyerV.mail}
+                                onChange={handleChange}
+                                title='El correo tiene que seguir la siguiente estructura : usuario@ejemplo.com'
+                                required
+                            />
+                            <TextField 
+                                className='FormItem'
+                                id="outlined-basic" 
+                                type="email"
+                                name="mailCheck"
+                                label="validar e-mail" 
+                                variant="outlined"
+                                required
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                onChange={emailMatch}
+                            />
+                            <Button
+                            className='btnDetalle FormItem'
+                            variant="contained"
+                            color="error"
+                            type="submit"
+                            onSubmit={clear}
+                            disabled={!enableButton}>
+                            COMPRAR
+                            </Button>
+                        </form> 
                         )}
  
 
@@ -269,7 +278,7 @@ const Cart = ()=>{
             <h2 className='carritoVacio'>
                 ¡Tu <ShoppingCartSharpIcon/> 
                 está vacío...Podés empezar a comprar 
-                <Link to='/'> acá!</Link>
+                <Link className='aca' to='/'> acá!</Link>
             </h2>
             </>
             }

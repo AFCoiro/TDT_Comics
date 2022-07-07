@@ -1,5 +1,4 @@
 //importa componentes propios
-import './pages.css';
 import ItemList from '../components/ItemListContainer/ItemList/ItemList'
 import db from './../utils/firebaseConfig';
 import Carousel from './../components/Carousel/Carousel';
