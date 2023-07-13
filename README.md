@@ -19,6 +19,6 @@ En cuanto a las dependencias instaladas por NPM, además de las obligatorias y o
 <ul> 
 <li>React</li>
 <li>Javascript</li>
-<li>css/scss</li>
+<li>Css/Scss</li>
 <li>Html</li>
 </ul>
