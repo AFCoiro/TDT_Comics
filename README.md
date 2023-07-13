@@ -17,8 +17,8 @@ En cuanto a las dependencias instaladas por NPM, además de las obligatorias y o
 # 🛠️ Tecnologías utilizadas
 
 <ul> 
-<li>Html</li>
-<li>css/scss</li>
-<li>Javascript</li>
 <li>React</li>
+<li>Javascript</li>
+<li>css/scss</li>
+<li>Html</li>
 </ul>
