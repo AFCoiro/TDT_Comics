@@ -1,6 +1,9 @@
-# Tienda de Don Tino-Comics
+<h1 align="center">Tienda de Don Tino-Comics</h1> 
+<br>
 
-TDT es una tienda online de comics y mangas. Mi intención es que tenga un enfoque dinámico, de navegación simple e intuitiva. Con un diseño sobrio y elegante.
+# 📝 Descripción del proyecto
+
+TDT Comics es la entrega del curso de ReactJS para Coderhouse y funciona como un e-commerce de comics y mangas. Mi intención fue que tenga un enfoque dinámico, de navegación simple e intuitiva. Con un diseño sobrio y elegante.
  
 Cuenta con un navbar distribuido por las distintas editoriales. También cuenta con otro "sub-menú" donde se dividen los productos dependiendo sus títulos (Batman, Spiderman, etc.).
 
@@ -11,11 +14,3 @@ También soy consciente de que algunas de las funcionalidades que tengo en este 
 
 En cuanto a las dependencias instaladas por NPM, además de las obligatorias y otras utilizadas en clase, como material UI (y la extensión de material icons), instalé swipper para los carrusel y sass para el estilado de la app.
 
-
-Acompaño el link del video de la navegación:
-
-[https://screen-recorder-bucket.s3.ap-south-1.amazonaws.com/ScreenRecorder_2022-07-07_fcb80dc6-0b73-4165-8b5e-c37fc5455498.mp4]
-
-¡Saludos y gracias por todo!
-
-	Agustín Coiro
