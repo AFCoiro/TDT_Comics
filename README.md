@@ -14,3 +14,11 @@ También soy consciente de que algunas de las funcionalidades que tengo en este 
 
 En cuanto a las dependencias instaladas por NPM, además de las obligatorias y otras utilizadas en clase, como material UI (y la extensión de material icons), instalé swipper para los carrusel y sass para el estilado de la app.
 
+# 🛠️ Tecnologías utilizadas
+
+<ul> 
+<li>Html</li>
+<li>css/scss</li>
+<li>Javascript</li>
+<li>React</li>
+</ul>
