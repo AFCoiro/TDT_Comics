@@ -40,6 +40,7 @@ useEffect( () => {
             product.id = doc.id;
             return product; 
         })
+        console.log('listaProd', listaProd)
         setLoading(false);
         return setData(listaProd);     
     }catch(err){
