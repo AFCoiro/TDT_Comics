@@ -24,6 +24,7 @@ const ItemListContainer = ({titleCont})=>{
         })
         .catch((err)=>{
             console.log('no anda', err)
+            setLoading(false)
         })
 
     }, [])// eslint-disable-line react-hooks/exhaustive-deps
