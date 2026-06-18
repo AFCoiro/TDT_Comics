@@ -31,6 +31,7 @@ useEffect( () => {
     
 //llamado de items filtrados por categorias
     const getProducts = async ()=>{
+        console.log('category value:', category)  
         try{
         const prodRef = collection(db,'listados')
         const qResult = query(prodRef, where('categoria' , '==', category))
@@ -51,7 +52,6 @@ useEffect( () => {
 
 //llamado de items filtrados por categorias    
     const getSubProducts = async ()=>{
-        console.log('category value:', category)  
         try{
         const prodRefSub = collection(db,'listados')
         const qResultSub = query(prodRefSub, where('nombre' , '==', subcategory))
