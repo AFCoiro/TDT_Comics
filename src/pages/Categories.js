@@ -21,17 +21,14 @@ const Categories = ()=>{
 
     useEffect( () => {
         setData([])
-        getProducts()
-        .then( (productos) => {
-            category ?  getProducts() : setData(productos)
-        })
-        getSubProducts()
-        .then( (productos) => {
-            subcategory ? getSubProducts(): setData(productos)
-        })
-    }, [category,subcategory])// eslint-disable-line react-hooks/exhaustive-deps
-//Busqué por todos lados el motivo por el cual me tirara este warning: React Hook useEffect has missing dependencies: 'getProducts' and 'getSubProducts'. Por lo que llegue a entender, despues de mucha prueba y error, es que al parecer no es un error de JavaScript/React, sino una advertencia de ESLint (eslint-plugin-react-hooks). Por eso, es que puse el eslint-diable-line.
-
+        if(category) {
+            getProducts()
+        }
+        if(subcategory) {
+            getSubProducts()
+        }
+    }, [category, subcategory])
+    
 //llamado de items filtrados por categorias
     const getProducts = async ()=>{
         const prodRef = collection(db,'listados')
