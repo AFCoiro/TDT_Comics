@@ -20,6 +20,7 @@ const Categories = ()=>{
     const {setLoading, loading,iMap } = useContext(CartContext);
 
 useEffect( () => {
+    console.log('category:', category, 'subcategory:', subcategory)
     setData([])
     if(category) {
         getProducts()
