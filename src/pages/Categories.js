@@ -31,32 +31,42 @@ useEffect( () => {
     
 //llamado de items filtrados por categorias
     const getProducts = async ()=>{
+        try{
         const prodRef = collection(db,'listados')
         const qResult = query(prodRef, where('categoria' , '==', category))
         const listadoSnapshot = await getDocs(qResult);
         const listaProd = listadoSnapshot.docs.map((doc)=>{
             let product = doc.data();
             product.id = doc.id;
-            setLoading(false);
             return product; 
         })
+        setLoading(false);
         return setData(listaProd);     
+    }catch(err){
+        console.log('error getProducts',err)
+        setLoading(false);
+    }
     };
 
 //llamado de items filtrados por categorias    
     const getSubProducts = async ()=>{
+        try{
         const prodRefSub = collection(db,'listados')
         const qResultSub = query(prodRefSub, where('nombre' , '==', subcategory))
         const listadoSnapshotSub = await getDocs(qResultSub);
         const listaProdSub = listadoSnapshotSub.docs.map((doc)=>{
             let productSub = doc.data();
             productSub.id = doc.id;
-            setLoading(false);
             return productSub; 
         })
+        setLoading(false);
         return setData(listaProdSub);    
-    };
-    
+    }catch(err){
+        console.log('error getSubProducts',err)
+        setLoading(false);
+    }
+};
+
 //condicional para cambiar banners segun la página donde esté
     let Cont1='/ban/Banner_01.png',Cont2='/ban/Banner_02.png',Cont3='/ban/Banner_03.png';
     let page1='marvel', page2='dc', page3='ivrea';
