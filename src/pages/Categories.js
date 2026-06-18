@@ -19,15 +19,15 @@ const Categories = ()=>{
     const  [data, setData] = useState([]);
     const {setLoading, loading,iMap } = useContext(CartContext);
 
-    useEffect( () => {
-        setData([])
-        if(category) {
-            getProducts()
-        }
-        if(subcategory) {
-            getSubProducts()
-        }
-    }, [category, subcategory])
+useEffect( () => {
+    setData([])
+    if(category) {
+        getProducts()
+    }
+    if(subcategory) {
+        getSubProducts()
+    }
+}, [category, subcategory]) // eslint-disable-line react-hooks/exhaustive-deps
     
 //llamado de items filtrados por categorias
     const getProducts = async ()=>{
