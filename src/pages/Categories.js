@@ -73,7 +73,7 @@ useEffect( () => {
 
 //condicional para cambiar banners segun la página donde esté
     let Cont1='/ban/Banner_01.png',Cont2='/ban/Banner_02.png',Cont3='/ban/Banner_03.png';
-    let page1='marvel', page2='dc', page3='ivrea';
+    let page1='marvel', page2='dc comics', page3='ivrea';
 
     if(category === 'marvel') {
         Cont1='../ban/Banner_05.jpg' 
@@ -83,7 +83,7 @@ useEffect( () => {
         page2='category/X-Men'
         page3='Avengers'
 
-    }else if(category === 'dc'){
+    }else if(category === 'dc comics'){
         Cont1='../ban/Banner_04.jpg'
         Cont2='../ban/Banner_07.jpg' 
         Cont3='../ban/Banner_08.jpg'

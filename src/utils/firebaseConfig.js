@@ -1,4 +1,3 @@
-import { getFirestore } from "firebase/firestore"
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -6,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA93GcMhwsl-iyyfC5-ilOQmRRPjqrreB0",
-  authDomain: "tdt-afc.firebaseapp.com",
-  projectId: "tdt-afc",
-  storageBucket: "tdt-afc.firebasestorage.app",
-  messagingSenderId: "728228271537",
-  appId: "1:728228271537:web:849d8087045a71d0a89990"
+  apiKey: "AIzaSyD6YERkfenGwdKFGPLezLmfHDljjh65MUQ",
+  authDomain: "afc-app-2a82e.firebaseapp.com",
+  projectId: "afc-app-2a82e",
+  storageBucket: "afc-app-2a82e.appspot.com",
+  messagingSenderId: "398695986883",
+  appId: "1:398695986883:web:37b01027c30fcced459476"
 };
 
 // Initialize Firebase
