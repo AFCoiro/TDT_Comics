@@ -1,12 +1,11 @@
 # 🛒 Tienda de Don Tino Comics
 
+![Screenshot](./screenshot.png)
+
 E-commerce for comics and manga built with React and Firebase.
+ Built in 2023 as part of my React learning path.
 
 🔗 [Live demo](https://tdt-comics.vercel.app/)
-
-> Built in 2023 as part of my React learning path.You said: ponlo con cdigo htmll asi se lee bien
-
-![Screenshot](./screenshot.png)
 
 ## 🛠️ Stack
 
