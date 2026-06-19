@@ -32,7 +32,8 @@ useEffect( () => {
     
 //llamado de items filtrados por categorias
     const getProducts = async ()=>{
-        console.log('category value:', category)  
+            console.log('db:', db)
+            console.log('buscando:', category)  
         try{
         const prodRef = collection(db,'listados')
         const qResult = query(prodRef, where('categoria' , '==', category))
